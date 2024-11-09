@@ -19,6 +19,7 @@ void setup() {
 }
 
 int i=300;
+int j=300;
 void loop() {
   // Drive each servo one at a time using setPWM()
 
@@ -28,17 +29,28 @@ void loop() {
     char input = Serial.read();
 
     if (input == 'a') {
-      i -= 10;
+      i -= 5;
       if (i < SERVO1MIN) {
         i = SERVO1MIN;
       }
     } else if (input == 'd') {
-      i += 10;
+      i += 5;
       if (i > SERVO1MAX) {
         i = SERVO1MAX;
+      }
+    } else if (input == 'w') {
+      j += 5;
+      if (j < SERVO1MIN) {
+        j = SERVO1MIN;
+      }
+    } else if (input == 's') {
+      j -= 5;
+      if (j > SERVO1MAX) {
+        j = SERVO1MAX;
       }
     }
     Serial.println(i);
     pwm.setPWM(0, 0, i);
+    pwm.setPWM(1, 0, j);
   }
 }

@@ -13,9 +13,5 @@ void draw() {
 }
 
 void keyPressed() {
-  if (key == 'a') {
-    port.write("a");
-  } else if (key == 'd') {
-    port.write("d");
-  }
+  iport.write(key);
 }
