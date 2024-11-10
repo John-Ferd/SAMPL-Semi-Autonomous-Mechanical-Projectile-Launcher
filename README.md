@@ -1,1 +1,1 @@
-# Arduino-Turret
+# SAMPL: Semi Autonomous Mechanical Projectile Launcher
