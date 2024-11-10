@@ -25,32 +25,15 @@ void loop() {
 
   // pwm.setPWM(SERVO_NUMBER, 0, FREQUENCY)
   if (Serial.available() > 0) {
-    //String input_str1 = Serial.readStringUntil(' ');
-    //unsigned char a = Serial.read();
-    String input_str2 = Serial.readStringUntil(' ');
+    String input_str1 = Serial.readStringUntil(' ');
 
-    Serial.println(input_str2);
-    if (input_str2 == "fire") {
+    if (input_str1 == "fire") {
       prev_fire_time = millis();
-      pwm.setPWM(2, 0, FIREVAL);
-      return;
-    } else if (millis() - prev_fire_time > 500) {
-      pwm.setPWM(2, 0, FIRENEUTRAL);
+      pwm.setPWM(2, 0, 150);
+    } else if (millis() - prev_fire_time > 1000) {
+      pwm.setPWM(2, 0, 500);
     }
-
-    unsigned char b = Serial.read();
-    String input_str3 = Serial.readString();
-    //Serial.print(input_str1 + " ");
-
-    /*if (input_str1 == "fire") {
-      pwm.setPWM(2, 0, FIREVAL);
-      prev_fire_time = millis();
-      delay(200);
-    } else {
-      pwm.setPWM(2, 0, FIRENEUTRAL);
-    }
-    //return;*/
-    int input1 = input_str2.toInt();
+    int input1 = input_str1.toInt();
 
     //unsigned char _ = Serial.read();
     int input2 = input_str3.toInt();
