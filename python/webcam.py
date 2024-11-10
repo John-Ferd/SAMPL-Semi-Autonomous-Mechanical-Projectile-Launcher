@@ -50,6 +50,9 @@ while (True):
             serial_out.write(str(norm_x) + " " + str(norm_y))
 
     cv2.imshow('MediaPipe Hands', frame)
+
+    if (cv2.waitKey(30) == 32):
+        serial_out.fire()
     # Check if user wants to exit.
     if (cv2.waitKey(20) & 0xFF == ord('x')):
         break

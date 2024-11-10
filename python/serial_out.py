@@ -9,3 +9,7 @@ arduino = serial.Serial(port=USB_PORT,   baudrate=9600, timeout=.1);
 def write(servo_power):
     print(f"WROTE {servo_power}")
     arduino.write(str(servo_power).encode());
+    #arduino.read(); # UNCOMMENT THIS LINE TO IMPROVE SPACE BAR, BUT REDUCE PERFORMANCE
+
+def fire():
+    arduino.write("fire a".encode())

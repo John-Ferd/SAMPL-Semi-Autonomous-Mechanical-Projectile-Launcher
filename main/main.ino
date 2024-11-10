@@ -17,13 +17,22 @@ void setup() {
   delay(10);
 }
 
+int prev_fire_time = 0;
 void loop() {
   // Drive each servo one at a time using setPWM()
 
   // pwm.setPWM(SERVO_NUMBER, 0, FREQUENCY)
   if (Serial.available() > 0) {
     String input_str1 = Serial.readStringUntil(' ');
+
+    if (input_str1 == "fire") {
+      prev_fire_time = millis();
+      pwm.setPWM(2, 0, 150);
+    } else if (millis() - prev_fire_time > 1000) {
+      pwm.setPWM(2, 0, 500);
+    }
     int input1 = input_str1.toInt();
+
     //unsigned char _ = Serial.read();
     String input_str2 = Serial.readString();
     int input2 = input_str2.toInt();
