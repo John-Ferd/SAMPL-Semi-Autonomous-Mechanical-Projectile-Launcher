@@ -12,8 +12,8 @@ mp_drawing = mp.solutions.drawing_utils
 capture = cv2.VideoCapture(0)
 
 # Edit these values appropriately depending on the servo
-SERVO_MIN = 90
-SERVO_MAX = 510
+SERVO_MIN = 150
+SERVO_MAX = 600
 
 
 while (True):
@@ -46,7 +46,7 @@ while (True):
         #print(f"Average: {x_sum/landmark_count} {y_sum/landmark_count}")
     
         if x_sum > 0 and y_sum > 0:
-            norm_x, norm_y = normalize_to_servo_range(image_width, image_height, x_sum/landmark_count, y_sum/landmark_count, 90, 510)
+            norm_x, norm_y = normalize_to_servo_range(image_width, image_height, x_sum/landmark_count, y_sum/landmark_count, SERVO_MIN, SERVO_MAX)
             serial_out.write(str(norm_x) + " " + str(norm_y))
 
     cv2.imshow('MediaPipe Hands', frame)
