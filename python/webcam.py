@@ -11,8 +11,11 @@ mp_hands = mp.solutions.hands.Hands()
 mp_drawing = mp.solutions.drawing_utils
 capture = cv2.VideoCapture(0)
 
+# Edit these values appropriately depending on the servo
+SERVO_MIN = 90
+SERVO_MAX = 510
 
-prev_time = 0
+
 while (True):
     # Store the frame from the video capture and resize it to the desired window size.
     ret, frame = capture.read()
@@ -42,8 +45,7 @@ while (True):
             
         #print(f"Average: {x_sum/landmark_count} {y_sum/landmark_count}")
     
-        if x_sum > 0 and y_sum > 0: #and time.time() - prev_time > 50:
-            #print("WROTE CALLED")
+        if x_sum > 0 and y_sum > 0:
             norm_x, norm_y = normalize_to_servo_range(image_width, image_height, x_sum/landmark_count, y_sum/landmark_count, 90, 510)
             serial_out.write(str(norm_x) + " " + str(norm_y))
 
@@ -52,6 +54,6 @@ while (True):
     if (cv2.waitKey(20) & 0xFF == ord('x')):
         break
 
-# When we exit the loop, we have to stop the capture too.
+# When we exit the loop, we have to stop the capture too
 capture.release()
 cv2.destroyAllWindows()

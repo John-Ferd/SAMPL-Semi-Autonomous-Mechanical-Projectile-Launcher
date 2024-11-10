@@ -17,8 +17,6 @@ void setup() {
   delay(10);
 }
 
-int i=300;
-int j=300;
 void loop() {
   // Drive each servo one at a time using setPWM()
 
